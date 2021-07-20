@@ -1,27 +1,25 @@
-import socket
-from pocsuite3.lib.utils import url2ip
-from pocsuite3.api import POCBase, Output, register_poc, logger, POC_CATEGORY, VUL_TYPE
-
+from pocsuite3.api import Output, POCBase, register_poc, requests, logger,VUL_TYPE
+from pocsuite3.api import get_listener_ip, get_listener_port
+from pocsuite3.api import REVERSE_PAYLOAD
+from pocsuite3.lib.utils import random_str
 
 class DemoPOC(POCBase):
     vulID = '89339'
     version = '3'
-    author = ['seebug']
-    vulDate = '2015-10-26'
-    createDate = '2015-10-26'
-    updateDate = '2015-12-09'
-    references = ['http://sebug.net/vuldb/ssvid-89339']
+    author = ['Suns0t']
+    vulDate = '2021-03-17'
+    createDate = '2021-07-20'
+    updateDate = '2021-07-20'
+    references = ['https://mp.weixin.qq.com/s/HMtAz6_unM1PrjfAzfwCUQ']
     name = 'Apache Solr任意文件读取'
-    appPowerLink = 'http://redis.io/'
-    appName = 'Redis'
+    appPowerLink = 'https://apache.org/'
+    appName = 'Solr'
     appVersion = 'All'
-    vulType = VUL_TYPE.UNAUTHORIZED_ACCESS
+    vulType = VUL_TYPE.ARBITRARY_FILE_READ
     desc = '''
         Apache Solr 存在任意文件读取漏洞，攻击者可以在未授权的情况下获取目标服务器敏感文件。
     '''
     samples = ['']
-    category = POC_CATEGORY.EXPLOITS.REMOTE
-    protocol = POC_CATEGORY.PROTOCOL.REDIS
 
     def _verify(self):
         result = {}
