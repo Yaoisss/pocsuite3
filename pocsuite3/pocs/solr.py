@@ -11,13 +11,13 @@ class DemoPOC(POCBase):
     createDate = '2015-10-26'
     updateDate = '2015-12-09'
     references = ['http://sebug.net/vuldb/ssvid-89339']
-    name = 'Redis 未授权访问'
+    name = 'Apache Solr任意文件读取'
     appPowerLink = 'http://redis.io/'
     appName = 'Redis'
     appVersion = 'All'
     vulType = VUL_TYPE.UNAUTHORIZED_ACCESS
     desc = '''
-        apache solr 版本a阿斯顿
+        Apache Solr 存在任意文件读取漏洞，攻击者可以在未授权的情况下获取目标服务器敏感文件。
     '''
     samples = ['']
     category = POC_CATEGORY.EXPLOITS.REMOTE
@@ -36,7 +36,7 @@ class DemoPOC(POCBase):
             recvdata = s.recv(1024)
             if recvdata and b'redis_version' in recvdata:
                 result['VerifyInfo'] = {}
-                result['VerifyInfo']['Info'] = "Redis未授权访问"
+                result['VerifyInfo']['Info'] = "Solr未授权访问"
                 result['VerifyInfo']['URL'] = host
                 result['VerifyInfo']['Port'] = port
         except Exception as ex:
@@ -66,7 +66,7 @@ class DemoPOC(POCBase):
                 if recvdata2 and b'+OK' in recvdata2:
                     if recvdata3 and b'+OK' in recvdata3:
                         result['VerifyInfo'] = {}
-                        result['VerifyInfo']['Info'] = "Redis未授权访问EXP执行成功"
+                        result['VerifyInfo']['Info'] = "Solr未授权访问EXP执行成功"
                         result['VerifyInfo']['URL'] = host
                         result['VerifyInfo']['Port'] = port
         except Exception as ex:
